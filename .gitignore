@@ -11,6 +11,6 @@ wheels/
 
 # data directory
 data/
-
+temp/
 # VSCode
 *.code-workspace
