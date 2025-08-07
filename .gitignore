@@ -11,6 +11,12 @@ wheels/
 
 # data directory
 data/
+.ipynb_checkpoints/
+01_Genesis/
+02_Exodus_/
+03_Leviticus_/
+KHKMUBS_DAVR_FB_N.zip
+KHKMUBS_DAVR_FB_N/
 
 # VSCode
 *.code-workspace
