@@ -11,6 +11,8 @@ wheels/
 
 # data directory
 data/
+# ava
+model/
 temp/
 .ipynb_checkpoints/
 01_Genesis/

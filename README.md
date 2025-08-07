@@ -27,7 +27,7 @@ uv sync
 Тиймээс `download_mbspeech.py` нэмэлт python script ашиглан татсан бөгөөд линкийг нь `davarbibles.org` -оос шинэчлэн татах боломжтой болсон боловч, библийн номууд (Genesis, Exodus г.м) -ыг тус тусад нь татаж болохгүй тул бүтэн библээр нь татаж зөвхөн эхний гурван номыг салгаж авсан. Энэхүү script -ийн үр дүнд `01_Genesis.zip` гэх мэтчилэн zip файлууд гарч ирэх ёстой.
 
 
-## 2. Шаардлагатай репонуудийг хуулах
+### 1.1 Шаардлагатай репонуудийг хуулах
 
 Git ашиглан `SWivid/F5-TTS` болон `tugstugi/pytorch-dc-tts` репонуудийг хуулах хэрэгтэй.
 
@@ -42,7 +42,7 @@ git clone https://github.com/MendeBadra/F5-TTS.git
 git clone https://github.com/tugstugi/pytorch-dc-tts.git
 ```
 
-
+### 1.2 Файлуудийг зөөх
 Үүний дараа өмнөх алхмын бэлтгэсэн `.zip` файлуудийг `pytorch-dc-tss/datasets` хавтасд хуулах хэрэгтэй.
 Ингэснээр `dl_and_prop_dataset.py` -ийг ажиллуулах боломжтой болох юм.
 
@@ -54,7 +54,7 @@ python pytorch-dc-tts/dl_and_preprop_dataset.py --dataset mbspeech
 Уг хавтасийг үндсэн репогийн `chimege_tts/data` -д хадгалах хэрэгтэй.
 
 
-## 3. F5-TTS fine-tuning
+## 2. F5-TTS fine-tuning
 
 Fine tune буюу тохируулахад `ffmpeg` програм суулгасан байх шаардлагатай. Мөн өмнөх алхамд бэлтгэсэн өгөгдлийг бэлтгэх кодийг ажиллуулах хэрэгтэй юм.
 
@@ -75,8 +75,34 @@ python src/f5_tts/train/finetune_gradio.py
 ![Зураг](<settings.png>)
 
 
+## 3. Шууд сургасан модельд хандах:
 
+1.2 болон 2-р алхмуудийг шууд алгасан `huggingface` дээрх `safetensor` -ийг хадгалж турших боломжтой. Ингэхийн тулд `chimege_tts` хавтасаас
 
+```python
+from huggingface_hub import hf_hub_download
+from pathlib import Path
 
+# Set target download folder
+target_dir = Path("F5-TTS/cpkts/mbspeech_finetune_model")
+target_dir.mkdir(parents=True, exist_ok=True)
+
+# Files you want to download
+safetensor_files = [
+    "model_last_pruned.safetensors",
+    "vocab.txt",
+]
+
+# Download each file into the folder
+for filename in safetensor_files:
+    file_path = hf_hub_download(
+        repo_id="mendeeb/F5-TTS-mongolian",
+        filename=filename,
+        local_dir=target_dir,
+        local_dir_use_symlinks=False  # Set to False to copy files instead of symlinks
+    )
+    print(f"Downloaded: {file_path}")  
+
+```
 
 
