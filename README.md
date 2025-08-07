@@ -29,7 +29,7 @@ uv sync
 
 ### 1.1 Шаардлагатай репонуудийг хуулах
 
-Git ашиглан `SWivid/F5-TTS` болон `tugstugi/pytorch-dc-tts` репонуудийг хуулах хэрэгтэй.
+Git ашиглан `SWivid/F5-TTS` болон `tugstugi/pytorch-dc-tts` fork репонуудийг хуулах хэрэгтэй.
 
 `F5-TTS` -ийг хуулах:
 ```
@@ -39,7 +39,7 @@ git clone https://github.com/MendeBadra/F5-TTS.git
 
 Мөн `pytorch-dc-tts` -ийг хуулах:
 ```
-git clone https://github.com/tugstugi/pytorch-dc-tts.git
+git clone https://github.com/MendeBadra/pytorch-dc-tts.git
 ```
 
 ### 1.2 Файлуудийг зөөх
@@ -84,7 +84,7 @@ from huggingface_hub import hf_hub_download
 from pathlib import Path
 
 # Set target download folder
-target_dir = Path("F5-TTS/cpkts/mbspeech_finetune_model")
+target_dir = Path("F5-TTS/ckpts/mbspeech_finetune_model")
 target_dir.mkdir(parents=True, exist_ok=True)
 
 # Files you want to download
@@ -104,5 +104,7 @@ for filename in safetensor_files:
     print(f"Downloaded: {file_path}")  
 
 ```
+
+Үүний дараагаар `finetune_gradio.py` файлийг ажиллуулж туршина.
 
 
