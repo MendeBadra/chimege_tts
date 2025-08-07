@@ -36,4 +36,6 @@ dependencies = [
     "x_transformers>=1.31.14",
     "requests>=2.32.4",
     "scikit-image",
+    "librosa",
+    "soundfile",    
 ]
